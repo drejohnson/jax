@@ -22,8 +22,8 @@ let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
 
   let handleResponse = () =>
     switch (xhr->readyState, xhr->status) {
-    | (Done, 200) => onSuccess(xhr->response)
-    | _ => onFail({"status": xhr->status, "statusText": xhr->statusText})
+    | (Done, 200) => onSuccess(. xhr->response)
+    | _ => onFail(. {"status": xhr->status, "statusText": xhr->statusText})
     };
 
   xhr->addEventListener(`load(_event => handleResponse()));
