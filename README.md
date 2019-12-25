@@ -7,13 +7,13 @@
 yarn:
 
 ```
-yarn add jax
+yarn add https://github.com/drejohnson/jax
 ```
 
 npm:
 
 ```
-npm install jax
+npm install https://github.com/drejohnson/jax
 ```
 
 Add `jax` to `bs-dependencies` in `bsconfig.json`.
