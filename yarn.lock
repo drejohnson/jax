@@ -13,7 +13,7 @@ bs-webapi@^0.15.6:
   integrity sha512-J+6+fBhkZ8DC8Xrq5Zv7w5pufEv/23TSsHSPMMoOJ1tejEbmXvk8qkwUi0JqPhWmA86XyGMO7Z2XbNNUtd/CPw==
 
 "bs-xmlhttprequest@https://github.com/drejohnson/bs-xmlhttprequest":
-  version "1.0.0"
-  resolved "https://github.com/drejohnson/bs-xmlhttprequest#73f24c707b8b34152e408ea7b5d7eea74d850a38"
+  version "1.0.1"
+  resolved "https://github.com/drejohnson/bs-xmlhttprequest#04ea229e7f627b2ad445a69f50e5ecfb4043ee0e"
   dependencies:
     bs-webapi "^0.15.6"

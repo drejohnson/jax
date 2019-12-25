@@ -5,7 +5,9 @@ type requestMethod =
   | PATCH
   | DELETE;
 
-let xhr = XmlHttpRequest.make();
+let xhr = XmlHttpRequest.makeXMLHttpRequest();
+
+let abort = XmlHttpRequest.abort;
 
 let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
   open XmlHttpRequest;
