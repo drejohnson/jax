@@ -1,6 +1,13 @@
+type requestMethod =
+  | GET
+  | POST
+  | PUT
+  | PATCH
+  | DELETE;
+
 let xhr = XmlHttpRequest.make();
 
-let request = (~url, ~method, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
+let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
   open XmlHttpRequest;
   let verb =
     switch (method) {
@@ -11,16 +18,17 @@ let request = (~url, ~method, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
     | DELETE => "DELETE"
     };
 
-  xhr->readyState === Done && xhr->status === 200
-    ? xhr->addEventListener(`load(_event => onSuccess(xhr->response)))
-    : xhr->addEventListener(
-        `error(
-          _event =>
-            onFail({"status": xhr->status, "statusText": xhr->statusText}),
-        ),
-      );
+  let handleResponse = () =>
+    switch (xhr->readyState, xhr->status) {
+    | (Done, 200) => onSuccess(xhr->response)
+    | _ => onFail({"status": xhr->status, "statusText": xhr->statusText})
+    };
 
-  xhr->open_(verb, url, Some(true), None, None);
+  xhr->addEventListener(`load(_event => handleResponse()));
+
+  xhr->addEventListener(`error(_event => Js.log("Network Error")));
+
+  xhr->open_(~verb, ~url, ~async=true, ());
 
   switch (headers) {
   | Some(headers) =>
