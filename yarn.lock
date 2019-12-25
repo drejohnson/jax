@@ -14,6 +14,6 @@ bs-webapi@^0.15.6:
 
 "bs-xmlhttprequest@https://github.com/drejohnson/bs-xmlhttprequest":
   version "1.0.0"
-  resolved "https://github.com/drejohnson/bs-xmlhttprequest#9e7e94c515426358c1245c1867f2540d7c3aafca"
+  resolved "https://github.com/drejohnson/bs-xmlhttprequest#73f24c707b8b34152e408ea7b5d7eea74d850a38"
   dependencies:
     bs-webapi "^0.15.6"

@@ -1,5 +1,7 @@
 # JAX
 
+> A wrapper around XMLHttpRequest written in ReasonML
+
 ## Install
 
 yarn:
@@ -21,12 +23,13 @@ Add `jax` to `bs-dependencies` in `bsconfig.json`.
 ```reason
 let (data, setData) = React.useState(() => [||]);
 React.useEffect0(() => {
-  let request = Jax.request(
+  Jax.request(
     ~method_=GET,
     ~url="/api/some/endpoint",
-    ~onSucces=res => setData(_ => res));
-  Some(() => {
-    request->Jax.abort
-  })
+    ~onSuccess=res => setData(_ => res),
+    ~onFail=err => Js.log(err),
+    (),
+  );
+  Some(() => {Jax.xhr->Jax.abort});
 })
 ```
