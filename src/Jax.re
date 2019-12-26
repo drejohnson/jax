@@ -1,3 +1,5 @@
+open XmlHttpRequest;
+
 type requestMethod =
   | GET
   | POST
@@ -5,12 +7,19 @@ type requestMethod =
   | PATCH
   | DELETE;
 
-let xhr = XmlHttpRequest.makeXMLHttpRequest();
+let xhr = makeXMLHttpRequest();
+let abort = abort;
 
-let abort = XmlHttpRequest.abort;
+module Response = {
+  let json = responseJson;
+  let text = responseText;
+  let arrayBuffer = responseArrayBuffer;
+  let document = responseDocument;
+  let xml = responseXml;
+  let url = responseUrl;
+};
 
 let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
-  open XmlHttpRequest;
   let verb =
     switch (method) {
     | GET => "GET"
@@ -22,7 +31,7 @@ let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
 
   let handleResponse = () =>
     switch (xhr->readyState, xhr->status) {
-    | (Done, 200) => onSuccess(xhr->response)
+    | (Done, 200) => onSuccess(xhr)
     | _ => onFail({"status": xhr->status, "statusText": xhr->statusText})
     };
 
