@@ -26,7 +26,12 @@ React.useEffect0(() => {
   Jax.request(
     ~method_=GET,
     ~url="/api/some/endpoint",
-    ~onSuccess=res => setData(_ => res),
+    ~onSuccess=xhr =>
+      xhr
+        ->Jaxon.Response.json
+        ->Js.Nullable.toOption
+        ->Belt.Option.map(res => setData(_ => res->parseResponse))
+        ->ignore,
     ~onFail=err => Js.log(err),
     (),
   );
