@@ -17,6 +17,7 @@ module Response = {
   let document = responseDocument;
   let xml = responseXml;
   let url = responseUrl;
+  let responseType = setResponseType;
 };
 
 let request = (~method, ~url, ~body=?, ~headers=?, ~onSuccess, ~onFail, ()) => {
