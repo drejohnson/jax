@@ -18,6 +18,10 @@
     "bsconfig.json",
     "src/Jax.re"
   ],
+  "peerDependencies": {
+    "bs-platform": "^7.0.0",
+    "bs-xmlhttprequest": "https://github.com/drejohnson/bs-xmlhttprequest"
+  },
   "devDependencies": {
     "bs-platform": "^7.0.0"
   },
